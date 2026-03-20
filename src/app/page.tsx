@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import { Play, ArrowRight, MapPin, Clock, Heart, Globe, BookOpen, Users } from 'lucide-react';
+import Counter from '@/components/ui/Counter';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -12,6 +14,14 @@ const fadeInUp = {
 };
 
 export default function Home() {
+  const mapSectionRef = useRef(null);
+  // (Scroll progress if needed for future effects, though unused for threads now)
+  const { scrollYProgress: _ } = useScroll({
+    target: mapSectionRef,
+    offset: ["start end", "end start"]
+  });
+
+
   return (
     <div className="flex flex-col w-full bg-cream min-h-screen">
 
@@ -48,8 +58,8 @@ export default function Home() {
       </section>
 
       {/* 2. Empathy & Belonging (100vh) */}
-      <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 bg-cream border-b border-light-sage/30">
-        <div className="max-w-5xl mx-auto text-center">
+      <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 bg-cream border-b border-light-sage/30 relative overflow-hidden">
+        <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.div {...fadeInUp}>
             <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-primary-900 mb-10 leading-snug">
               "You belong here, exactly as you are. We are building a community where faith meets real life."
@@ -61,6 +71,22 @@ export default function Home() {
               In a world of constant motion, find a place to pause, reflect, and grow alongside people who care about your journey.
             </p>
           </motion.div>
+        </div>
+
+        {/* Infinite Looping People Image Marquee */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden z-0 pointer-events-none opacity-40 mix-blend-multiply">
+          <div className="flex w-max animate-marquee">
+            {/* Block 1 */}
+            <div className="flex shrink-0">
+              <img src="/peoples_line.webp" alt="Community" className="h-16 sm:h-20 md:h-28 lg:h-32 w-auto max-w-none" />
+              <img src="/peoples_line.webp" alt="Community" className="h-16 sm:h-20 md:h-28 lg:h-32 w-auto max-w-none" />
+            </div>
+            {/* Block 2 (identical duplicate to ensure perfect seamless loop) */}
+            <div className="flex shrink-0">
+              <img src="/peoples_line.webp" alt="Community" className="h-16 sm:h-20 md:h-28 lg:h-32 w-auto max-w-none" />
+              <img src="/peoples_line.webp" alt="Community" className="h-16 sm:h-20 md:h-28 lg:h-32 w-auto max-w-none" />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -129,13 +155,15 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 pt-10 border-t border-muted-teal/20"
           >
             {[
-              { number: "50+", label: "Countries Reached" },
-              { number: "1M+", label: "Meals Served" },
-              { number: "10k+", label: "Weekly Attendees" },
-              { number: "1", label: "Global Mission" }
+              { target: 50, suffix: "+", label: "Countries Reached" },
+              { target: 1, suffix: "M+", label: "Meals Served" },
+              { target: 10, suffix: "k+", label: "Weekly Attendees" },
+              { target: 1, suffix: "", label: "Global Mission" }
             ].map((stat, idx) => (
               <div key={idx} className="text-center flex flex-col items-center justify-center">
-                <div className="font-serif text-6xl md:text-8xl font-bold text-primary-900 mb-4">{stat.number}</div>
+                <div className="font-serif text-6xl md:text-8xl font-bold text-primary-900 mb-4">
+                  <Counter target={stat.target} suffix={stat.suffix} />
+                </div>
                 <div className="text-xs font-bold uppercase tracking-[0.2em] text-muted-teal">{stat.label}</div>
               </div>
             ))}
@@ -252,7 +280,7 @@ export default function Home() {
       </section>
 
       {/* 7. Interactive Global Map Placeholder (NEW - 100vh) */}
-      <section className="min-h-screen flex flex-col justify-center py-20 px-6 md:px-12 bg-cream text-primary-900 relative overflow-hidden">
+      <section ref={mapSectionRef} className="min-h-screen flex flex-col justify-center py-20 px-6 md:px-12 bg-cream text-primary-900 relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10 pointer-events-none flex items-center justify-center">
           {/* abstract map shape placeholder using css boundaries */}
           <div className="w-[120vw] h-[120vh] border-[40px] border-primary-900/20 rounded-full blur-[100px]" />
@@ -268,14 +296,68 @@ export default function Home() {
           </div>
 
           {/* Map Visualization Simulation */}
-          <motion.div {...fadeInUp} className="w-full max-w-5xl aspect-video bg-primary-900/5 rounded-3xl border border-muted-teal/30 p-8 md:p-16 flex items-center justify-center relative shadow-inner">
-            <p className="font-serif text-3xl md:text-5xl text-primary-900/20 font-bold uppercase tracking-widest text-center">
-              [ Interactive Map <br /> Visualization Area ]
-            </p>
+          <motion.div {...fadeInUp} className="w-full max-w-5xl aspect-video rounded-3xl border border-muted-teal/30 overflow-hidden relative shadow-2xl">
+            <img 
+              src="24a088e.webp" 
+              alt="Global Peace Map" 
+              className="w-full h-full object-cover opacity-80" 
+            />
+            
+            {/* SVG Threads Overlay */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 1000 562">
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+
+              {/* Path 1: Top-Left to Top-Right */}
+              <motion.path
+                d="M 250 140 Q 500 100 750 187"
+                fill="none"
+                stroke="white"
+                strokeWidth="3"
+                strokeLinecap="round"
+                filter="url(#glow)"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
+              />
+              {/* Path 2: Top-Right to Bottom-Rightish */}
+              <motion.path
+                d="M 750 187 Q 800 350 666 421"
+                fill="none"
+                stroke="white"
+                strokeWidth="3"
+                strokeLinecap="round"
+                filter="url(#glow)"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.5, delay: 1.2, ease: "easeInOut" }}
+              />
+              {/* Path 3: Bottom to Top-Left */}
+              <motion.path
+                d="M 666 421 Q 400 450 250 140"
+                fill="none"
+                stroke="white"
+                strokeWidth="3"
+                strokeLinecap="round"
+                filter="url(#glow)"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.5, delay: 1.9, ease: "easeInOut" }}
+              />
+            </svg>
+
             {/* Decorative Pointers */}
-            <div className="absolute top-1/4 left-1/4 w-4 h-4 rounded-full bg-primary-600 animate-pulse shadow-[0_0_20px_rgba(47,72,88,0.5)]" />
-            <div className="absolute top-1/2 right-1/3 w-6 h-6 rounded-full bg-light-sage/80 animate-pulse shadow-[0_0_20px_rgba(100,145,143,0.5)] delay-300" />
-            <div className="absolute bottom-1/3 left-1/2 w-3 h-3 rounded-full bg-primary-900 animate-pulse shadow-[0_0_20px_rgba(47,72,88,0.8)] delay-700" />
+            <div className="absolute top-[25%] left-[25%] w-4 h-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-600 animate-pulse shadow-[0_0_20px_rgba(47,72,88,0.5)] z-20" />
+            <div className="absolute top-[33%] right-[25%] w-6 h-6 translate-x-1/2 -translate-y-1/2 rounded-full bg-light-sage/80 animate-pulse shadow-[0_0_20px_rgba(100,145,143,0.5)] delay-300 z-20" />
+            <div className="absolute bottom-[25%] left-[66.6%] w-3 h-3 -translate-x-1/2 translate-y-1/2 rounded-full bg-primary-900 animate-pulse shadow-[0_0_20px_rgba(47,72,88,0.8)] delay-700 z-20" />
+            
+            {/* Overlay Gradient for depth */}
+            <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent pointer-events-none z-15" />
           </motion.div>
         </div>
       </section>
