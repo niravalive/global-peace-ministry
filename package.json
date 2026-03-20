@@ -1,14 +1,16 @@
 {
-  "name": "tmp-app",
+  "name": "global-peace-ministry",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 6969",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 6969",
     "lint": "eslint"
   },
   "dependencies": {
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^0.577.0",
     "next": "16.2.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
