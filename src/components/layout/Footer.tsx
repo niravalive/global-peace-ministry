@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-900 text-white border-t border-black/10">
+    <footer className="bg-primary-900 text-cream border-t border-black/10">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-24 md:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
           
@@ -36,10 +36,11 @@ export default function Footer() {
               Initiatives
             </h3>
             <ul className="space-y-4 text-sm font-bold uppercase tracking-widest">
-              <li><Link href="#" className="hover:text-gray-400 transition-colors block">Peace Education</Link></li>
-              <li><Link href="#" className="hover:text-gray-400 transition-colors block">Global Summits</Link></li>
-              <li><Link href="#" className="hover:text-gray-400 transition-colors block">Youth Dialogues</Link></li>
-              <li><Link href="/donate" className="hover:text-gray-400 transition-colors block mt-8 pb-1 border-b border-white/20 inline-block">Give Now</Link></li>
+              <li><Link href="#" className="hover:text-light-sage transition-colors block">Peace Education</Link></li>
+              <li><Link href="#" className="hover:text-light-sage transition-colors block">Global Summits</Link></li>
+              <li><Link href="#" className="hover:text-light-sage transition-colors block">Youth Dialogues</Link></li>
+              <li><Link href="#" className="hover:text-light-sage transition-colors block">Salvation Prayer</Link></li>
+              <li><Link href="/donate" className="hover:text-light-sage transition-colors block mt-8 pb-1 border-b border-cream/20 inline-block">Give Now</Link></li>
             </ul>
           </div>
 
@@ -49,29 +50,29 @@ export default function Footer() {
             </h3>
             <ul className="space-y-6 text-sm text-gray-300 font-medium">
               <li>
-                <div className="text-white font-bold uppercase tracking-widest mb-1 text-xs">Address</div>
+                <div className="text-cream font-bold uppercase tracking-widest mb-1 text-xs">Address</div>
                 789 Harmony Circle<br />Suite 400<br />Peace City, PC 54321
               </li>
               <li>
-                <div className="text-white font-bold uppercase tracking-widest mb-1 text-xs">Phone</div>
+                <div className="text-cream font-bold uppercase tracking-widest mb-1 text-xs">Phone</div>
                 +1 (800) PEACE-NOW
               </li>
               <li>
-                <div className="text-white font-bold uppercase tracking-widest mb-1 text-xs">Email</div>
-                <a href="mailto:hello@globalpeace.com" className="hover:text-white transition-colors">hello@globalpeace.com</a>
+                <div className="text-cream font-bold uppercase tracking-widest mb-1 text-xs">Email</div>
+                <a href="mailto:hello@globalpeace.com" className="hover:text-light-sage transition-colors">hello@globalpeace.com</a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-32 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
+        <div className="mt-32 pt-12 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-cream/70">
             &copy; {new Date().getFullYear()} Global Peace Community.
           </p>
-          <div className="flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
-            <a href="#" className="hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="hover:text-white transition-colors">YouTube</a>
-            <a href="#" className="hover:text-white transition-colors">Facebook</a>
+          <div className="flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em] text-cream/70">
+            <a href="#" className="hover:text-light-sage transition-colors">Instagram</a>
+            <a href="#" className="hover:text-light-sage transition-colors">YouTube</a>
+            <a href="#" className="hover:text-light-sage transition-colors">Facebook</a>
           </div>
         </div>
       </div>

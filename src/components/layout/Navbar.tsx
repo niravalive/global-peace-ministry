@@ -10,6 +10,7 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Leadership', href: '/leadership' },
+  { name: 'Community', href: '/community' },
   { name: 'Ministries', href: '/ministries' },
   { name: 'Events', href: '/events' },
   { name: 'Contact', href: '/contact' },
@@ -36,7 +37,7 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed w-full z-50 top-0 transition-all duration-700 ${
-      scrolled || isOpen ? 'bg-white border-b border-gray-100 py-4' : 'bg-transparent py-6 md:py-10'
+      scrolled || isOpen ? 'bg-cream border-b border-muted-teal/20 shadow-sm shadow-light-sage/20 py-4' : 'bg-transparent py-6 md:py-10'
     }`}>
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="flex justify-between items-center">
@@ -100,7 +101,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-white z-40 flex flex-col justify-center items-center"
+            className="fixed inset-0 bg-cream z-40 flex flex-col justify-center items-center"
           >
             <div className="space-y-8 text-center flex flex-col">
               {navLinks.map((link) => {

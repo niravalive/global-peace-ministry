@@ -1,41 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #f8fafc;
-  --color-primary-100: #f1f5f9;
-  --color-primary-600: #334155;
-  --color-primary-800: #1e293b;
-  --color-primary-900: #0f172a; 
-  --color-primary-950: #020617;
-  
-  --color-secondary-400: #d4d4d8; 
-  --color-secondary-500: #71717a; 
-  --color-secondary-600: #52525b;
-  
-  --color-peace-50: #ffffff;    
-  --color-peace-100: #fafafa;   
-  --color-peace-200: #f4f4f5;
-  --color-peace-300: #e4e4e7;
-  --color-peace-500: #71717a;
-  --color-peace-600: #52525b;
-  --color-peace-900: #18181b;   
+  --color-primary-900: #2f4858;
+  --color-primary-600: #456c76;
+  --color-muted-teal: #64918f;
+  --color-light-sage: #8eb7a6;
+  --color-cream: #fffded;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   --font-serif: var(--font-serif), Georgia, serif;
   --font-sans: var(--font-sans), system-ui, sans-serif;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #111111; 
+  --background: #fdffd6;
+  --foreground: #2f4858;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #000000;
-    --foreground: #ffffff;
+    --background: #2f4858;
+    --foreground: #fdffd6;
   }
 }
 
@@ -64,9 +51,9 @@ body {
   text-wrap: balance;
 }
 
-/* Reduced excessive padding */
+/* Reduced excessive padding for higher density */
 @utility section-padding {
-  @apply py-16 md:py-24;
+  @apply py-12 md:py-16;
 }
 
 @utility hover-card {
@@ -74,29 +61,30 @@ body {
 }
 
 @utility btn-primary {
-  @apply inline-flex items-center justify-center px-8 py-4 bg-primary-900 text-white font-bold uppercase tracking-widest text-xs transition-colors duration-500 border border-primary-900;
+  @apply inline-flex items-center justify-center px-8 py-4 bg-primary-900 text-cream font-bold uppercase tracking-widest text-xs transition-all duration-500 border border-primary-900 rounded;
+
   &:hover {
-    background-color: transparent;
-    color: var(--color-primary-900);
+    background-color: var(--color-primary-600);
+    border-color: var(--color-primary-600);
   }
 }
 
 @utility btn-secondary {
-  @apply inline-flex items-center justify-center px-8 py-4 bg-transparent text-primary-900 font-bold uppercase tracking-widest text-xs transition-colors duration-500 border border-primary-900;
+  @apply inline-flex items-center justify-center px-8 py-4 bg-transparent text-primary-900 font-bold uppercase tracking-widest text-xs transition-all duration-500 border border-primary-900 rounded;
+
   &:hover {
     background-color: var(--color-primary-900);
-    color: white;
+    color: var(--color-cream);
   }
 }
 
-/* Updated Typography Utilities */
-/* Elegant, Established Church Vibe: Serif, Sentence Case, Normal Tracking */
+/* Updated Typography Utilities - High Density */
 @utility heading-display {
-  @apply font-serif text-5xl md:text-7xl font-normal tracking-tight leading-[1.1] text-balance;
+  @apply font-serif text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] text-balance;
 }
 
 @utility heading-primary {
-  @apply font-serif text-4xl md:text-5xl font-normal tracking-tight leading-snug text-balance;
+  @apply font-serif text-4xl md:text-5xl font-semibold tracking-tight leading-snug text-balance;
 }
 
 /* Kept tracking-widest for small subheaders to contrast the serif display fonts */
