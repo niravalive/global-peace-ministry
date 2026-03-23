@@ -18,8 +18,14 @@ export default function CommunityPage() {
       {/* 1. Hero Section (100vh) */}
       <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center px-6 md:px-12 bg-primary-900 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-primary-600)_1px,_transparent_1px)] bg-[length:24px_24px] opacity-20" />
-          <div className="absolute top-1/2 left-1/2 w-[60vw] h-[60vw] bg-light-sage/20 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2 -z-10" />
+          <img 
+            src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=2000" 
+            alt="Community Gathering" 
+            className="w-full h-full object-cover opacity-[0.25] mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-primary-600)_1px,_transparent_1px)] bg-[length:24px_24px] opacity-20 pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 w-[60vw] h-[60vw] bg-light-sage/20 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">

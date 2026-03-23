@@ -59,10 +59,17 @@ export default function EventsPage() {
       
       {/* 1. Hero Section (100vh) */}
       <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center px-6 md:px-12 bg-cream overflow-hidden">
-        {/* Abstract Background Element */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-primary-900/10 -z-10" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-primary-900/5 -z-10" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full border border-muted-teal/5 -z-10 bg-primary-900/[0.02]" />
+        {/* Abstract Background Elements and Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2000" 
+            alt="Event Gathering" 
+            className="w-full h-full object-cover opacity-[0.15] mix-blend-multiply"
+          />
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-primary-900/10 z-0 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-primary-900/5 z-0 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full border border-muted-teal/5 z-0 pointer-events-none bg-primary-900/[0.02]" />
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <motion.div

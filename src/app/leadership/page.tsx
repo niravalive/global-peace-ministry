@@ -51,8 +51,15 @@ export default function LeadershipPage() {
       
       {/* 1. Hero Section (100vh) */}
       <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center px-6 md:px-12 bg-cream overflow-hidden">
-        {/* Abstract Background Element */}
-        <div className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-light-sage/20 blur-[120px] -z-10" />
+        {/* Abstract Background Element and Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?auto=format&fit=crop&q=80&w=2000" 
+            alt="Leadership Theme" 
+            className="w-full h-full object-cover opacity-[0.15] mix-blend-multiply"
+          />
+        </div>
+        <div className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-light-sage/20 blur-[120px] z-0 pointer-events-none" />
         
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <motion.div

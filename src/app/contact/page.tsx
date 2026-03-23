@@ -30,8 +30,16 @@ export default function ContactPage() {
       
       {/* 1. Hero / Quick Info (100vh) */}
       <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center px-6 md:px-12 bg-primary-900 overflow-hidden">
-        {/* Abstract Background Element */}
-        <div className="absolute top-0 right-0 w-[80vw] h-[80vw] rounded-full bg-light-sage/10 blur-[150px] -z-10 translate-x-1/3 -translate-y-1/3" />
+        {/* Abstract Background Element and Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=2000" 
+            alt="Community Networking" 
+            className="w-full h-full object-cover opacity-[0.25] mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent" />
+        </div>
+        <div className="absolute top-0 right-0 w-[80vw] h-[80vw] rounded-full bg-light-sage/10 blur-[150px] z-0 pointer-events-none translate-x-1/3 -translate-y-1/3" />
         
         <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
           <motion.div

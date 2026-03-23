@@ -131,22 +131,35 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto w-full space-y-24">
           {/* The Daily Word */}
-          <motion.div {...fadeInUp} className="max-w-4xl mx-auto bg-white p-10 md:p-16 rounded-2xl shadow-xl shadow-muted-teal/10 border border-muted-teal/20 relative z-10 flex flex-col md:flex-row items-center gap-10">
+          <motion.div {...fadeInUp} className="max-w-4xl mx-auto bg-white p-10 md:p-16 rounded-2xl shadow-xl shadow-muted-teal/10 border border-muted-teal/20 relative z-10 flex flex-col md:flex-row items-center gap-10 text-center md:text-left">
             <div className="flex flex-col justify-center items-center px-8 py-6 bg-cream rounded-xl border border-muted-teal/30 shadow-inner text-primary-900 shrink-0">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-teal mb-1">Daily</span>
               <span className="font-serif text-3xl font-bold">Word</span>
             </div>
-            <div>
-              <p className="font-serif text-primary-900 text-2xl md:text-3xl font-bold italic mb-3 leading-snug">
-                "Peace I leave with you; my peace I give you."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="h-px bg-primary-600/30 w-12" />
-                <p className="text-primary-900/80 font-medium tracking-wider uppercase text-xs">
-                  John 14:27
-                </p>
-              </div>
-            </div>
+            {(() => {
+              const { dailyWords } = require('@/data/dailyWords');
+              // Simple hash-based selection to pick a verse for the day
+              const today = new Date();
+              const start = new Date(today.getFullYear(), 0, 0);
+              const diff = (today.getTime() - start.getTime()) + ((start.getTimezoneOffset() - today.getTimezoneOffset()) * 60 * 1000);
+              const oneDay = 1000 * 60 * 60 * 24;
+              const dayOfYear = Math.floor(diff / oneDay);
+              const verse = dailyWords[dayOfYear % dailyWords.length];
+
+              return (
+                <div className="flex-1">
+                  <p className="font-serif text-primary-900 text-2xl md:text-3xl font-bold italic mb-3 leading-snug">
+                    "{verse.text}"
+                  </p>
+                  <div className="flex items-center justify-center md:justify-start gap-4">
+                    <div className="h-px bg-primary-600/30 w-12" />
+                    <p className="text-primary-900/80 font-medium tracking-wider uppercase text-xs">
+                      {verse.reference}
+                    </p>
+                  </div>
+                </div>
+              );
+            })()}
           </motion.div>
 
           {/* Stats Grid */}

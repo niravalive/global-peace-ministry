@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import StickyDonate from '@/components/ui/StickyDonate';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -28,7 +29,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} font-sans min-h-screen flex flex-col`}>
         <Navbar />
-        <main className="flex-grow flex flex-col">{children}</main>
+        <main className="flex-grow flex-col">{children}</main>
+        <StickyDonate />
         <Footer />
       </body>
     </html>

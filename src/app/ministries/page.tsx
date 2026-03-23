@@ -47,8 +47,16 @@ export default function MinistriesPage() {
       
       {/* 1. Hero Section (100vh) */}
       <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center px-6 md:px-12 bg-primary-900 border-b-8 border-primary-600 overflow-hidden">
-        {/* Abstract Topographic Lines Simulation */}
-        <div className="absolute inset-0 opacity-[0.03] bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#fdffd6_10px,#fdffd6_11px)]" />
+        {/* Abstract Background Elements and Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=2000" 
+            alt="Volunteers Serving" 
+            className="w-full h-full object-cover opacity-[0.25] mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent" />
+        </div>
+        <div className="absolute inset-0 opacity-[0.03] bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#fdffd6_10px,#fdffd6_11px)] z-0 pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <motion.div

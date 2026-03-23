@@ -29,27 +29,27 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isHome = pathname === '/';
+  // Pages that have a light hero section (bg-cream, etc.)
+  const lightHeroPages = ['/events', '/leadership', '/plan-a-visit'];
+  const hasDarkHero = !lightHeroPages.includes(pathname);
   
-  // On home page before scrolling, text should be white to contrast with hero image.
+  // Before scrolling, text should be white if the page has a dark hero section.
   // Otherwise, text is dark.
-  const isLightText = isHome && !scrolled && !isOpen;
+  const isLightText = hasDarkHero && !scrolled && !isOpen;
 
   return (
-    <nav className={`fixed w-full z-50 top-0 transition-all duration-700 ${
-      scrolled || isOpen ? 'bg-cream border-b border-muted-teal/20 shadow-sm shadow-light-sage/20 py-4' : 'bg-transparent py-6 md:py-10'
-    }`}>
+    <nav className={`fixed w-full z-50 top-0 transition-all duration-700 ${scrolled || isOpen ? 'bg-cream border-b border-muted-teal/20 shadow-sm shadow-light-sage/20 py-4' : 'bg-transparent py-6 md:py-10'
+      }`}>
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="flex justify-between items-center">
-          
+
           <div className="flex z-50">
-            <Link href="/" className={`font-black uppercase tracking-widest text-xl md:text-2xl transition-colors duration-500 ${
-              isLightText ? 'text-white' : 'text-primary-900'
-            }`}>
+            <Link href="/" className={`font-black uppercase  text-2xl md:text-3xl transition-colors duration-500 ${isLightText ? 'text-white' : 'text-primary-900'
+              }`}>
               GPC.
             </Link>
           </div>
-          
+
           <div className="hidden lg:flex items-center space-x-12">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -57,11 +57,10 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative text-[11px] font-bold uppercase tracking-[0.2em] transition-colors duration-500 ${
-                    isLightText
-                      ? (isActive ? 'text-white' : 'text-white/70 hover:text-white')
-                      : (isActive ? 'text-primary-900' : 'text-gray-500 hover:text-primary-900')
-                  }`}
+                  className={`relative text-sm font-bold uppercase tracking-[0.2em] transition-colors duration-500 ${isLightText
+                    ? (isActive ? 'text-white' : 'text-white/70 hover:text-white')
+                    : (isActive ? 'text-primary-900' : 'text-gray-500 hover:text-primary-900')
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -69,22 +68,20 @@ export default function Navbar() {
             })}
             <Link
               href="/donate"
-              className={`text-[11px] font-bold uppercase tracking-[0.2em] px-6 py-3 border transition-colors duration-500 ${
-                isLightText 
-                  ? 'border-white text-white hover:bg-white hover:text-primary-900'
-                  : 'border-primary-900 text-primary-900 hover:bg-primary-900 hover:text-white'
-              }`}
+              className={`text-sm font-bold uppercase tracking-[0.2em] px-6 py-3 border transition-colors duration-500 ${isLightText
+                ? 'border-white text-white hover:bg-white hover:text-primary-900'
+                : 'border-primary-900 text-primary-900 hover:bg-primary-900 hover:text-white'
+                } ${pathname === '/donate' ? 'invisible pointer-events-none' : ''}`}
             >
-              Give
+              Donate
             </Link>
           </div>
-          
+
           <div className="flex items-center lg:hidden z-50">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 transition-colors duration-500 ${
-                 isLightText ? 'text-white' : 'text-primary-900'
-              }`}
+              className={`p-2 transition-colors duration-500 ${isLightText ? 'text-white' : 'text-primary-900'
+                }`}
             >
               <span className="sr-only">Toggle menu</span>
               {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
@@ -111,9 +108,8 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className={`text-4xl md:text-6xl font-black uppercase tracking-tighter hover:text-gray-400 transition-colors ${
-                      isActive ? 'text-primary-900' : 'text-gray-200'
-                    }`}
+                    className={`text-4xl md:text-6xl font-black uppercase tracking-tighter hover:text-gray-400 transition-colors ${isActive ? 'text-primary-900' : 'text-gray-200'
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -129,10 +125,10 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-            
+
             <div className="absolute bottom-10 left-0 right-0 flex justify-center space-x-8 text-xs font-bold uppercase tracking-widest text-primary-900">
-               <a href="#" className="hover:text-gray-400 transition-colors">Instagram</a>
-               <a href="#" className="hover:text-gray-400 transition-colors">YouTube</a>
+              <a href="#" className="hover:text-gray-400 transition-colors">Instagram</a>
+              <a href="#" className="hover:text-gray-400 transition-colors">YouTube</a>
             </div>
           </motion.div>
         )}
